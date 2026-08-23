@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arquivo de ajuda: como navegar e utilizar o site do Um Novo Começo Petshop.">
+    <meta name="author" content="Bruno Cristian da Silva">
+    <title>Um Novo Começo Petshop - Ajuda</title>
+</head>
+<body>
+
+<header>
+    <img src="logo.jpeg" alt="Logotipo do Um Novo Começo Petshop" width="180">
+    <h1>Um Novo Começo Petshop</h1>
+    <p>Cuidando do seu melhor amigo com carinho e responsabilidade</p>
+    <p>Rua Querencia, 539 - Parque dos Anjos - Gravataí/RS | Telefone: (51) 99277-7181</p>
+
+    <nav>
+        <h2>Menu de navegação</h2>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+    </nav>
+</header>
+
+<hr>
+
+<main>
+    <h2>Ajuda - Como utilizar o site</h2>
+    <p>
+        Esta página descreve as funcionalidades disponíveis no site do
+        Um Novo Começo Petshop e explica como navegar entre as páginas.
+    </p>
+
+    <section>
+        <h3>1. Estrutura do site</h3>
+        <p>
+            O site é formado por cinco páginas. Todas possuem o mesmo cabeçalho,
+            com o menu de navegação, e o mesmo rodapé, com os dados de contato e
+            as informações legais.
+        </p>
+        <table>
+            <caption>Páginas do site e suas funções</caption>
+            <thead>
+                <tr>
+                    <th>Página</th>
+                    <th>Arquivo</th>
+                    <th>Função</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Início</td>
+                    <td>index.html</td>
+                    <td>Apresenta o petshop, o resumo das categorias de produtos, os serviços e o horário de funcionamento.</td>
+                </tr>
+                <tr>
+                    <td>Produtos</td>
+                    <td>produtos.html</td>
+                    <td>Exibe os produtos das três categorias, com foto, descrição e valor, além de uma tabela-resumo.</td>
+                </tr>
+                <tr>
+                    <td>Serviços</td>
+                    <td>servicos.html</td>
+                    <td>Apresenta os serviços de banho e tosa, com e sem tele-busca, com descrição, duração e valor.</td>
+                </tr>
+                <tr>
+                    <td>Contato</td>
+                    <td>contato.html</td>
+                    <td>Reúne os canais de atendimento, o horário e um formulário para envio de mensagens.</td>
+                </tr>
+                <tr>
+                    <td>Ajuda</td>
+                    <td>ajuda.html</td>
+                    <td>Esta página, com a descrição das funcionalidades do site.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <section>
+        <h3>2. Como navegar</h3>
+        <ul>
+            <li>Use o <strong>menu do cabeçalho</strong>, presente no topo de todas as páginas, para ir a qualquer seção do site.</li>
+            <li>O mesmo menu é repetido no <strong>rodapé</strong>, para quem chegou ao final da página.</li>
+            <li>Na página de Produtos, o menu <strong>"Ir para a categoria"</strong> leva diretamente à categoria escolhida por meio de links internos (âncoras).</li>
+            <li>Para voltar à página anterior, use o botão "Voltar" do navegador.</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <section>
+        <h3>3. Como consultar os produtos</h3>
+        <ol>
+            <li>Acesse a página <a href="produtos.html">Produtos</a>.</li>
+            <li>Escolha uma das três categorias: Acessórios, Rações ou Higiene e Limpeza.</li>
+            <li>Cada produto exibe a <strong>foto</strong>, o <strong>nome</strong>, a <strong>descrição</strong> e o <strong>valor</strong>.</li>
+            <li>Ao final da página há uma tabela com todos os produtos e valores, para comparação rápida.</li>
+        </ol>
+    </section>
+
+    <hr>
+
+    <section>
+        <h3>4. Como consultar os serviços</h3>
+        <ol>
+            <li>Acesse a página <a href="servicos.html">Serviços</a>.</li>
+            <li>Consulte a tabela de serviços: cada linha indica se o valor é <strong>com</strong> ou <strong>sem tele-busca</strong>.</li>
+            <li>Verifique as regras da tele-busca na seção "O que é a tele-busca?".</li>
+            <li>Siga os passos da seção "Como agendar" para marcar o atendimento.</li>
+        </ol>
+    </section>
+
+    <hr>
+
+    <section>
+        <h3>5. Como enviar uma mensagem</h3>
+        <ol>
+            <li>Acesse a página <a href="contato.html">Contato</a>.</li>
+            <li>Preencha o nome, o e-mail e, opcionalmente, o telefone.</li>
+            <li>Selecione o assunto na lista e escreva a mensagem.</li>
+            <li>Clique em "Enviar mensagem" ou use "Limpar formulário" para recomeçar.</li>
+        </ol>
+        <p>
+            <strong>Observação:</strong> nesta fase 1 o formulário apenas apresenta a
+            estrutura em HTML. A validação e o envio dos dados serão implementados na
+            fase 2, com JavaScript.
+        </p>
+    </section>
+
+    <hr>
+
+    <section>
+        <h3>6. Informações técnicas</h3>
+        <ul>
+            <li>Site desenvolvido em <strong>HTML5 puro</strong>, sem CSS, sem Bootstrap e sem JavaScript, conforme o escopo da fase 1.</li>
+            <li>Estrutura semântica com as tags <code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>article</code>, <code>address</code> e <code>footer</code>.</li>
+            <li>Todas as imagens possuem o atributo <code>alt</code>, garantindo acessibilidade para leitores de tela.</li>
+            <li>Compatível com os navegadores Google Chrome, Mozilla Firefox, Microsoft Edge e Safari.</li>
+        </ul>
+    </section>
+</main>
+
+<hr>
+
+<footer>
+    <h2>Um Novo Começo Petshop</h2>
+
+    <nav>
+        <h3>Navegação</h3>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+    </nav>
+
+    <h3>Contato</h3>
+    <address>
+        Rua Querencia, 539 - Parque dos Anjos - Gravataí/RS - CEP 94180-190<br>
+        Telefone: (51) 99277-7181<br>
+    </address>
+
+    <h3>Informações legais</h3>
+    <p><small>Imagens e valores meramente ilustrativos.</small></p>
+    <p><small>Desenvolvido por Bruno Cristian da Silva - Projeto da Disciplina, Fase 1.</small></p>
+</footer>
+</body>
+</html>

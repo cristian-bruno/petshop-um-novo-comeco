@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fale com o Um Novo Começo Petshop: endereço, telefone e horário de atendimento.">
+    <meta name="author" content="Bruno Cristian da Silva">
+    <title>Um Novo Começo Petshop - Contato</title>
+</head>
+<body>
+
+<header>
+    <img src="logo.jpeg" alt="Logotipo do Um Novo Começo Petshop" width="180">
+    <h1>Um Novo Começo Petshop</h1>
+    <p>Cuidando do seu melhor amigo com carinho e responsabilidade</p>
+    <p>Rua Querência, 539 - Parque dos Anjos - Gravataí/RS | Telefone: (51) 99277-7181</p>
+
+    <nav>
+        <h2>Menu de navegação</h2>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+    </nav>
+</header>
+
+<hr>
+
+<main>
+    <h2>Fale Conosco</h2>
+    <p>
+        Entre em contato para tirar dúvidas sobre produtos, solicitar orçamentos ou
+        agendar os serviços de banho e tosa.
+    </p>
+
+    <section>
+        <h3>Nossos canais de atendimento</h3>
+        <address>
+            <strong>Endereço:</strong> Rua Querencia, 539 - Parque dos Anjos - Gravataí/RS - CEP 94180-190<br>
+            <strong>Telefone:</strong> (51) 99277-7181<br>
+            <strong>WhatsApp:</strong> (51) 99277-7181<br>
+        </address>
+    </section>
+
+    <hr>
+
+    <section>
+       <h3>Horário de atendimento</h3>
+        <table>
+            <caption>Horários de atendimento da loja</caption>
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Horário</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Segunda a sexta-feira</td>
+                    <td>08h às 19h</td>
+                </tr>
+                <tr>
+                    <td>Sábados</td>
+                    <td>08h às 14h</td>
+                </tr>
+                <tr>
+                    <td>Domingos e feriados</td>
+                    <td>Fechado</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <hr>
+
+    <section>
+        <h3>Envie uma mensagem</h3>
+        <p>Preencha o formulário abaixo e retornaremos o contato em até 24 horas úteis.</p>
+
+        <form action="#" method="post">
+            <fieldset>
+                <legend>Dados do tutor</legend>
+
+                <p>
+                    <label for="nome">Nome completo:</label><br>
+                    <input type="text" id="nome" name="nome" size="40" required>
+                </p>
+
+                <p>
+                    <label for="email">E-mail:</label><br>
+                    <input type="email" id="email" name="email" size="40" required>
+                </p>
+
+                <p>
+                    <label for="telefone">Telefone:</label><br>
+                    <input type="tel" id="telefone" name="telefone" size="20">
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Assunto</legend>
+
+                <p>
+                    <label for="assunto">Selecione o assunto:</label><br>
+                    <select id="assunto" name="assunto">
+                        <option value="produtos">Dúvida sobre produtos</option>
+                        <option value="banho">Agendamento de banho</option>
+                        <option value="tosa">Agendamento de tosa</option>
+                        <option value="telebusca">Informações sobre tele-busca</option>
+                        <option value="outros">Outros assuntos</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="mensagem">Mensagem:</label><br>
+                    <textarea id="mensagem" name="mensagem" rows="6" cols="50" required></textarea>
+                </p>
+            </fieldset>
+
+            <p>
+                <button type="submit">Enviar mensagem</button>
+                <button type="reset">Limpar formulário</button>
+            </p>
+        </form>
+
+        <p><small>O envio do formulário será implementado na fase 2 do projeto.</small></p>
+    </section>
+</main>
+
+<hr>
+
+<footer>
+    <h2>Um Novo Começo Petshop</h2>
+
+    <nav>
+        <h3>Navegação</h3>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+    </nav>
+
+    <h3>Contato</h3>
+    <address>
+        Rua Querencia, 539 - Parque dos Anjos - Gravataí/RS - CEP 94180-190<br>
+        Telefone: (51) 99277-7181>
+    </address>
+
+    <h3>Informações legais</h3>
+    <p><small>Imagens e valores meramente ilustrativos.</small></p>
+    <p><small>Desenvolvido por Bruno Cristian da Silva - Projeto da Disciplina, Fase 1.</small></p>
+</footer>
+</body>
+</html>
