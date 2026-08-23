@@ -3,10 +3,10 @@
 Sistema web de comércio de produtos e serviços de um petshop, desenvolvido como
 Projeto da Disciplina — **Fase 1**.
 
-- **Autor:** [SEU NOME COMPLETO]
-- **Disciplina:** [NOME DA DISCIPLINA]
-- **Site publicado:** [COLE AQUI O LINK DO GITHUB PAGES]
-- **Repositório:** [COLE AQUI O LINK DO REPOSITÓRIO]
+- **Autor:** Bruno Cristian da Silva
+- **Disciplina:** Fundamentos de Sistemas Web 
+- **Site publicado:** https://cristian-bruno.github.io/petshop-um-novo-comeco/
+- **Repositório:** https://github.com/cristian-bruno/petshop-um-novo-comeco
 
 ## Escopo desta fase
 
@@ -48,8 +48,7 @@ telefone e menu de navegação (`nav`) com links para todas as páginas.
 com descrição, duração e valor, além do combo banho e tosa.
 
 ### Rodapé (footer)
-Presente em todas as páginas, com menu de navegação, endereço, telefone, e-mail,
-CNPJ, aviso legal e informação de autoria.
+Presente em todas as páginas, com menu de navegação, endereço, telefone e informação de autoria.
 
 ## Recursos de HTML utilizados
 
@@ -67,11 +66,4 @@ CNPJ, aviso legal e informação de autoria.
 2. Abra o arquivo `index.html` em qualquer navegador.
 3. Navegue pelo menu do cabeçalho.
 
-## Observações
 
-- A imagem `tapete.jpg` é uma **ilustração provisória** — substitua por uma foto
-  real do produto antes da entrega final.
-- Valores e dados cadastrais (endereço, CNPJ, telefone) são fictícios, usados
-  apenas para fins didáticos.
-- Substitua todas as ocorrências de `[SEU NOME COMPLETO]` pelo seu nome nos
-  arquivos HTML (aparece na tag `meta name="author"` e no rodapé).
