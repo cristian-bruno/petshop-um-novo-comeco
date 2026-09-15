@@ -39,6 +39,41 @@
         atendimento humanizado e profissionais capacitados.
     </p>
 
+    <!-- Carrossel de destaques (Fase 2) -->
+    <section class="secao-carrossel" aria-label="Destaques do petshop">
+        <h2>Destaques</h2>
+        <div class="carrossel" id="carrossel-principal">
+            <div class="carrossel-trilho">
+                <figure class="carrossel-slide">
+                    <img src="img/racao-cao.jpg" alt="Ração premium para cães adultos" width="760" height="460">
+                    <figcaption>Rações de qualidade para cada fase da vida do seu pet</figcaption>
+                </figure>
+                <figure class="carrossel-slide">
+                    <img src="img/coleira.jpg" alt="Coleira ajustável de nylon com guia reforçada" width="760" height="460">
+                    <figcaption>Acessórios resistentes para o dia a dia do seu pet</figcaption>
+                </figure>
+                <figure class="carrossel-slide">
+                    <img src="img/shampoo.jpg" alt="Frasco de shampoo neutro para cães e gatos" width="760" height="460">
+                    <figcaption>Banho e tosa com carinho, com ou sem tele-busca</figcaption>
+                </figure>
+                <figure class="carrossel-slide">
+                    <img src="img/racao-gato.jpg" alt="Pacote de ração Golden para gatos castrados" width="760" height="460">
+                    <figcaption>Cuidado completo para cães e gatos, em todas as idades</figcaption>
+                </figure>
+            </div>
+
+            <button type="button" class="carrossel-seta carrossel-anterior" aria-label="Slide anterior">‹</button>
+            <button type="button" class="carrossel-seta carrossel-proximo" aria-label="Próximo slide">›</button>
+
+            <div class="carrossel-indicadores">
+                <button type="button" class="carrossel-ponto ativo" data-slide="0" aria-label="Ir para o slide 1"></button>
+                <button type="button" class="carrossel-ponto" data-slide="1" aria-label="Ir para o slide 2"></button>
+                <button type="button" class="carrossel-ponto" data-slide="2" aria-label="Ir para o slide 3"></button>
+                <button type="button" class="carrossel-ponto" data-slide="3" aria-label="Ir para o slide 4"></button>
+            </div>
+        </div>
+    </section>
+
     <section>
         <h2>Nossos produtos</h2>
         <p>
@@ -57,12 +92,15 @@
         <p>
             Oferecemos <strong>banho</strong> e <strong>tosa</strong>, com ou sem
             <strong>tele-busca</strong> (buscamos e devolvemos o seu pet em casa).
-            Veja os valores na página de <a href="servicos.html">Serviços</a>.
+            Veja os valores na página de <a href="servicos.html">Serviços</a> e agende pela
+            página de <a href="contato.html#agendamento">Contato</a>.
         </p>
     </section>
 
     <section>
         <h2>Horário de funcionamento</h2>
+        <!-- Indicador dinâmico (aberto/fechado agora), calculado via JavaScript -->
+        <p id="status-loja" class="status-loja" aria-live="polite"></p>
         <table>
             <caption>Horários de atendimento da loja</caption>
             <thead>

@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fale com o Um Novo Começo Petshop: endereço, telefone e horário de atendimento.">
+    <meta name="description" content="Fale com o Um Novo Começo Petshop: endereço, telefone, formulário de contato e agendamento de banho e tosa.">
     <meta name="author" content="Bruno Cristian da Silva">
     <title>Um Novo Começo Petshop - Contato</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -49,6 +50,8 @@
 
     <section>
        <h3>Horário de atendimento</h3>
+        <!-- Indicador dinâmico (aberto/fechado agora), calculado via JavaScript -->
+        <p id="status-loja" class="status-loja" aria-live="polite"></p>
         <table>
             <caption>Horários de atendimento da loja</caption>
             <thead>
@@ -76,11 +79,130 @@
 
     <hr>
 
+    <!-- Formulário de cadastro do cliente/pet e agendamento (Fase 2) -->
+    <section id="agendamento">
+        <h3>Cadastro e agendamento de banho ou tosa</h3>
+        <p>
+            Preencha os dados abaixo para agendar o banho ou a tosa do seu pet.
+            Nossa equipe entrará em contato para confirmar o horário.
+        </p>
+
+        <form action="#" method="post" id="form-agendamento" data-mensagem-sucesso="Solicitação de agendamento enviada! Em breve confirmaremos o horário.">
+            <fieldset>
+                <legend>Dados do tutor</legend>
+
+                <p>
+                    <label for="nome-tutor">Nome completo:</label>
+                    <input type="text" id="nome-tutor" name="nome-tutor" placeholder="Seu nome completo" required>
+                </p>
+
+                <p>
+                    <label for="endereco-tutor">Endereço:</label>
+                    <input type="text" id="endereco-tutor" name="endereco-tutor" placeholder="Rua, número e bairro" required>
+                </p>
+
+                <p>
+                    <label for="cpf-tutor">CPF:</label>
+                    <input type="text" id="cpf-tutor" name="cpf-tutor" placeholder="000.000.000-00"
+                           pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" inputmode="numeric"
+                           title="Digite o CPF no formato 000.000.000-00" required>
+                </p>
+
+                <p>
+                    <span class="rotulo-grupo">Sexo:</span>
+                    <span class="grupo-opcoes">
+                        <label><input type="radio" name="sexo" value="Feminino" required> Feminino</label>
+                        <label><input type="radio" name="sexo" value="Masculino"> Masculino</label>
+                        <label><input type="radio" name="sexo" value="Prefiro não informar"> Prefiro não informar</label>
+                    </span>
+                </p>
+
+                <p>
+                    <label for="telefone-tutor">Telefone:</label>
+                    <input type="tel" id="telefone-tutor" name="telefone-tutor" placeholder="(51) 99999-9999" required>
+                </p>
+
+                <p>
+                    <label for="email-tutor">E-mail:</label>
+                    <input type="email" id="email-tutor" name="email-tutor" placeholder="voce@exemplo.com" required>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Dados do pet</legend>
+
+                <p>
+                    <label for="nome-pet">Nome do pet:</label>
+                    <input type="text" id="nome-pet" name="nome-pet" placeholder="Nome do seu pet" required>
+                </p>
+
+                <p>
+                    <label for="raca-pet">Raça:</label>
+                    <input type="text" id="raca-pet" name="raca-pet" placeholder="Ex.: SRD, Poodle, Persa...">
+                </p>
+
+                <p>
+                    <label for="idade-pet">Idade (anos):</label>
+                    <input type="number" id="idade-pet" name="idade-pet" min="0" max="30" step="1" placeholder="Ex.: 3" required>
+                </p>
+
+                <p>
+                    <label>
+                        <input type="checkbox" id="autoriza-fotos" name="autoriza-fotos">
+                        Autorizo o uso de fotos do meu pet nas redes sociais do petshop
+                    </label>
+                </p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Serviço e agendamento</legend>
+
+                <p>
+                    <span class="rotulo-grupo">Serviço desejado:</span>
+                    <span class="grupo-opcoes">
+                        <label><input type="radio" name="servico" value="Banho" required> Banho</label>
+                        <label><input type="radio" name="servico" value="Tosa"> Tosa</label>
+                        <label><input type="radio" name="servico" value="Banho e Tosa (combo)"> Banho e Tosa (combo)</label>
+                    </span>
+                </p>
+
+                <p>
+                    <span class="rotulo-grupo">Forma de atendimento:</span>
+                    <span class="grupo-opcoes">
+                        <label><input type="radio" name="atendimento" value="Tele-busca" required> Tele-busca (buscamos e entregamos)</label>
+                        <label><input type="radio" name="atendimento" value="Entrega no local"> Entrega do pet no local</label>
+                    </span>
+                </p>
+
+                <p>
+                    <label for="data-agendamento">Data desejada:</label>
+                    <input type="date" id="data-agendamento" name="data-agendamento" required>
+                </p>
+
+                <p>
+                    <label for="horario-agendamento">Horário desejado:</label>
+                    <input type="time" id="horario-agendamento" name="horario-agendamento" step="1800" required>
+                </p>
+
+                <p>
+                    <small>Atendemos de segunda a sexta das 8h às 19h e aos sábados das 8h às 14h. Aos domingos e feriados não há atendimento.</small>
+                </p>
+            </fieldset>
+
+            <p>
+                <button type="submit">Enviar solicitação de agendamento</button>
+                <button type="reset">Limpar formulário</button>
+            </p>
+        </form>
+    </section>
+
+    <hr>
+
     <section>
         <h3>Envie uma mensagem</h3>
-        <p>Preencha o formulário abaixo e retornaremos o contato em até 24 horas úteis.</p>
+        <p>Preencha o formulário abaixo para dúvidas gerais e retornaremos o contato em até 24 horas úteis.</p>
 
-        <form action="#" method="post">
+        <form action="#" method="post" id="form-contato-geral" data-mensagem-sucesso="Mensagem enviada! Em breve entraremos em contato.">
             <fieldset>
                 <legend>Dados do tutor</legend>
 
@@ -125,8 +247,6 @@
                 <button type="reset">Limpar formulário</button>
             </p>
         </form>
-
-        <p><small>O envio do formulário será implementado na fase 2 do projeto.</small></p>
     </section>
 </main>
 
@@ -156,5 +276,6 @@
     <p><small>Imagens e valores meramente ilustrativos.</small></p>
     <p><small>Desenvolvido por Bruno Cristian da Silva - Projeto da Disciplina, Fase 2. </small></p>
 </footer>
+<script src="js/script.js" defer></script>
 </body>
 </html>

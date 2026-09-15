@@ -1,12 +1,15 @@
 /* =========================================================
-   Um Novo Começo Petshop — Fase 2 
+   Um Novo Começo Petshop — Fase 2
    ========================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
     marcarLinkAtivo();
     montarMenuMobile();
     montarBotaoTopo();
-    validarFormularioContato();
+    configurarEnvioFormularios();
+    definirDataMinimaAgendamento();
+    iniciarCarrossel();
+    atualizarStatusLoja();
 });
 
 /* ---------- 1. Marca o link do menu correspondente à página atual ---------- */
@@ -69,65 +72,129 @@ function montarBotaoTopo() {
     });
 }
 
-/* ---------- 4. Validação simples do formulário de contato ---------- */
-function validarFormularioContato() {
-    var form = document.querySelector('main form');
-    if (!form) return; // só existe em contato.html
+/* ---------- 4. Envio dos formulários (contato e cadastro/agendamento) ----------
+   O site ainda não tem back-end nesta fase, então o envio real dos dados
+   não acontece. Por isso aproveitamos a validação nativa do HTML5 (atributos
+   required, type, pattern, min) através de checkValidity()/reportValidity():
+   se o formulário estiver válido, mostramos uma mensagem de sucesso e
+   limpamos os campos; caso contrário, o próprio navegador aponta o que falta
+   corrigir. Como há mais de um formulário em algumas páginas, a função
+   percorre todos eles. */
+function configurarEnvioFormularios() {
+    var formularios = document.querySelectorAll('main form');
 
-    // cria a mensagem de sucesso uma vez
-    var sucesso = document.createElement('p');
-    sucesso.className = 'form-sucesso';
-    sucesso.textContent = 'Mensagem enviada! Em breve entraremos em contato.';
-    form.appendChild(sucesso);
+    formularios.forEach(function (form) {
+        var sucesso = document.createElement('p');
+        sucesso.className = 'form-sucesso';
+        sucesso.textContent = form.dataset.mensagemSucesso || 'Enviado com sucesso!';
+        form.appendChild(sucesso);
 
-    form.addEventListener('submit', function (evento) {
-        var valido = true;
-        var camposObrigatorios = form.querySelectorAll('[required]');
-
-        camposObrigatorios.forEach(function (campo) {
-            limparErro(campo);
-
-            if (!campo.value.trim()) {
-                mostrarErro(campo, 'Este campo é obrigatório.');
-                valido = false;
-            } else if (campo.type === 'email' && !emailValido(campo.value)) {
-                mostrarErro(campo, 'Digite um e-mail válido.');
-                valido = false;
-            }
-        });
-
-        if (!valido) {
+        form.addEventListener('submit', function (evento) {
             evento.preventDefault();
-            sucesso.classList.remove('visivel');
-            return;
-        }
 
-        // Fase 2 ainda não tem back-end: por enquanto só mostramos
-        // a mensagem de sucesso e evitamos recarregar a página.
-        // Quando houver envio real, é só remover o preventDefault.
-        evento.preventDefault();
-        sucesso.classList.add('visivel');
-        form.reset();
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                sucesso.classList.remove('visivel');
+                return;
+            }
+
+            sucesso.classList.add('visivel');
+            form.reset();
+        });
     });
 }
 
-function mostrarErro(campo, texto) {
-    campo.classList.add('campo-invalido');
+/* ---------- 5. Data mínima do agendamento ----------
+   Função temporal: usa a data atual do navegador (new Date()) para impedir
+   que o campo de agendamento aceite um dia que já passou. */
+function definirDataMinimaAgendamento() {
+    var campoData = document.getElementById('data-agendamento');
+    if (!campoData) return;
 
-    var erro = document.createElement('span');
-    erro.className = 'mensagem-erro';
-    erro.textContent = texto;
-    campo.insertAdjacentElement('afterend', erro);
+    var hoje = new Date();
+    var ano = hoje.getFullYear();
+    var mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    var dia = String(hoje.getDate()).padStart(2, '0');
+
+    campoData.min = ano + '-' + mes + '-' + dia;
 }
 
-function limparErro(campo) {
-    campo.classList.remove('campo-invalido');
-    var proximo = campo.nextElementSibling;
-    if (proximo && proximo.classList.contains('mensagem-erro')) {
-        proximo.remove();
+/* ---------- 6. Indicador "aberto agora" / "fechado agora" ----------
+   Outra função temporal: compara o horário atual do visitante com a tabela
+   de horários de atendimento (segunda a sexta, sábado, domingo/feriado). */
+function atualizarStatusLoja() {
+    var elemento = document.getElementById('status-loja');
+    if (!elemento) return;
+
+    var agora = new Date();
+    var diaSemana = agora.getDay(); // 0 = domingo ... 6 = sábado
+    var horaDecimal = agora.getHours() + agora.getMinutes() / 60;
+
+    var aberto = false;
+    if (diaSemana >= 1 && diaSemana <= 5) {
+        aberto = horaDecimal >= 8 && horaDecimal < 19;
+    } else if (diaSemana === 6) {
+        aberto = horaDecimal >= 8 && horaDecimal < 14;
     }
+
+    elemento.textContent = aberto
+        ? 'Estamos abertos agora'
+        : 'Estamos fechados no momento';
+    elemento.classList.toggle('status-aberto', aberto);
+    elemento.classList.toggle('status-fechado', !aberto);
 }
 
-function emailValido(valor) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+/* ---------- 7. Carrossel de destaques (index.html) ---------- */
+function iniciarCarrossel() {
+    var carrossel = document.getElementById('carrossel-principal');
+    if (!carrossel) return;
+
+    var trilho = carrossel.querySelector('.carrossel-trilho');
+    var slides = carrossel.querySelectorAll('.carrossel-slide');
+    var pontos = carrossel.querySelectorAll('.carrossel-ponto');
+    var indiceAtual = 0;
+    var temporizador = null;
+
+    function irPara(indice) {
+        indiceAtual = (indice + slides.length) % slides.length;
+        trilho.style.transform = 'translateX(-' + (indiceAtual * 100) + '%)';
+
+        pontos.forEach(function (ponto, i) {
+            ponto.classList.toggle('ativo', i === indiceAtual);
+        });
+    }
+
+    function iniciarAutoAvanco() {
+        temporizador = window.setInterval(function () {
+            irPara(indiceAtual + 1);
+        }, 6000);
+    }
+
+    function pararAutoAvanco() {
+        window.clearInterval(temporizador);
+    }
+
+    carrossel.querySelector('.carrossel-anterior').addEventListener('click', function () {
+        irPara(indiceAtual - 1);
+    });
+
+    carrossel.querySelector('.carrossel-proximo').addEventListener('click', function () {
+        irPara(indiceAtual + 1);
+    });
+
+    pontos.forEach(function (ponto, i) {
+        ponto.addEventListener('click', function () {
+            irPara(i);
+        });
+    });
+
+    // pausa a troca automática quando o mouse ou o foco do teclado
+    // estão sobre o carrossel, e retoma ao sair
+    carrossel.addEventListener('mouseenter', pararAutoAvanco);
+    carrossel.addEventListener('mouseleave', iniciarAutoAvanco);
+    carrossel.addEventListener('focusin', pararAutoAvanco);
+    carrossel.addEventListener('focusout', iniciarAutoAvanco);
+
+    irPara(0);
+    iniciarAutoAvanco();
 }

@@ -1,5 +1,5 @@
 /* =========================================================
-   Um Novo Começo Petshop — Fase 2 
+   Um Novo Começo Petshop — Fase 2
    ========================================================= */
 
 /* ---------- 1. Fontes ---------- */
@@ -12,12 +12,20 @@
     --cor-primaria-escura: #23453B;
     --cor-acento: #E8A33D;
     --cor-acento-escuro: #C97F1F;
-    
+
     --cor-fundo: #EFF3EC;
     --cor-superficie: #FFFFFF;
     --cor-texto: #1F2A24;
     --cor-texto-suave: #5B6B62;
     --cor-borda: #DCE3DD;
+
+    /* tokens de estado, usados nas mensagens de formulário e no status da loja */
+    --cor-sucesso: #1F5A2E;
+    --cor-sucesso-fundo: #E7F3EA;
+    --cor-sucesso-borda: #BFE0C8;
+    --cor-alerta: #C0392B;
+    --cor-alerta-fundo: #FBE7E7;
+    --cor-alerta-borda: #F1B9B2;
 
     --fonte-titulo: 'Baloo 2', sans-serif;
     --fonte-texto: 'Work Sans', sans-serif;
@@ -267,7 +275,7 @@ tbody tr:hover {
     background: var(--cor-fundo);
 }
 
-/* ---------- 8. Formulário (contato.html) ---------- */
+/* ---------- 8. Formulários (contato.html) ---------- */
 form {
     background: var(--cor-superficie);
     border: 1px solid var(--cor-borda);
@@ -275,6 +283,11 @@ form {
     padding: 1.25rem 1.5rem;
     box-shadow: var(--sombra);
     max-width: 560px;
+}
+
+/* espaço entre dois formulários seguidos na mesma página */
+form + form {
+    margin-top: 1.5rem;
 }
 
 fieldset {
@@ -313,16 +326,43 @@ input:focus, select:focus, textarea:focus {
     border-color: var(--cor-acento);
 }
 
-/* estado de erro simples — aplicado pelo script.js na validação */
-input.campo-invalido, textarea.campo-invalido {
-    border-color: #C0392B;
-    outline-color: #C0392B;
+/* campos usados no agendamento não precisam ocupar a largura toda */
+input[type="date"],
+input[type="time"],
+input[type="number"] {
+    width: auto;
+    min-width: 160px;
 }
 
-.mensagem-erro {
-    color: #C0392B;
-    font-size: 0.82rem;
-    margin-top: 0.25rem;
+/* rótulo usado para agrupar radio/checkbox (não é o label de um único campo) */
+.rotulo-grupo {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0.75rem 0 0.3rem;
+}
+
+/* grupo de opções (radio/checkbox) exibidas lado a lado */
+.grupo-opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.25rem;
+}
+
+.grupo-opcoes label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    width: auto;
+    accent-color: var(--cor-acento);
+    cursor: pointer;
 }
 
 button, input[type="submit"] {
@@ -343,12 +383,13 @@ button:hover, input[type="submit"]:hover {
     color: #fff;
 }
 
-/* mensagem de sucesso exibida via JS após envio */
+/* mensagem de sucesso exibida via JS após o envio (o site ainda não
+   tem back-end nesta fase, então nenhum dado é realmente enviado) */
 .form-sucesso {
     display: none;
-    background: #E7F3EA;
-    border: 1px solid #BFE0C8;
-    color: #1F5A2E;
+    background: var(--cor-sucesso-fundo);
+    border: 1px solid var(--cor-sucesso-borda);
+    color: var(--cor-sucesso);
     padding: 0.75rem 1rem;
     border-radius: 8px;
     margin-top: 1rem;
@@ -435,7 +476,121 @@ footer small {
     transform: translateY(-2px);
 }
 
-/* ---------- 11. Responsivo (mobile) ---------- */
+/* ---------- 11. Carrossel de destaques (index.html) ---------- */
+.carrossel {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.carrossel-trilho {
+    display: flex;
+    transition: transform 0.6s ease;
+}
+
+.carrossel-slide {
+    position: relative;
+    min-width: 100%;
+    margin: 0;
+}
+
+.carrossel-slide img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.carrossel-slide figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(0deg, rgba(31, 42, 36, 0.75), rgba(31, 42, 36, 0));
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.carrossel-seta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.85);
+    color: var(--cor-primaria-escura);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+}
+
+.carrossel-anterior {
+    left: 0.75rem;
+}
+
+.carrossel-proximo {
+    right: 0.75rem;
+}
+
+.carrossel-seta:hover,
+.carrossel-seta:focus-visible {
+    background: #fff;
+}
+
+.carrossel-indicadores {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.6rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.carrossel-ponto {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 0;
+    cursor: pointer;
+}
+
+.carrossel-ponto.ativo {
+    background: var(--cor-acento);
+    border-color: var(--cor-acento);
+}
+
+/* ---------- 12. Indicador de status da loja (aberto/fechado agora) ---------- */
+.status-loja {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+}
+
+.status-loja.status-aberto {
+    background: var(--cor-sucesso-fundo);
+    color: var(--cor-sucesso);
+}
+
+.status-loja.status-fechado {
+    background: var(--cor-alerta-fundo);
+    color: var(--cor-alerta);
+}
+
+/* ---------- 13. Responsivo (mobile) ---------- */
 @media (max-width: 720px) {
     .nav-toggle {
         display: inline-block;
@@ -457,5 +612,15 @@ footer small {
 
     form {
         max-width: 100%;
+    }
+
+    .carrossel-slide img {
+        height: 300px;
+    }
+
+    .carrossel-seta {
+        width: 34px;
+        height: 34px;
+        font-size: 1.1rem;
     }
 }
