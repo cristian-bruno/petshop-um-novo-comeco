@@ -1,0 +1,461 @@
+/* =========================================================
+   Um Novo Começo Petshop — Fase 2 
+   ========================================================= */
+
+/* ---------- 1. Fontes ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap');
+
+/* ---------- 2. Variáveis (tokens de design) ---------- */
+:root {
+    /* Paleta: verde profundo (confiança/cuidado) + âmbar (energia/brinquedo) */
+    --cor-primaria: #2F5D50;
+    --cor-primaria-escura: #23453B;
+    --cor-acento: #E8A33D;
+    --cor-acento-escuro: #C97F1F;
+    
+    --cor-fundo: #EFF3EC;
+    --cor-superficie: #FFFFFF;
+    --cor-texto: #1F2A24;
+    --cor-texto-suave: #5B6B62;
+    --cor-borda: #DCE3DD;
+
+    --fonte-titulo: 'Baloo 2', sans-serif;
+    --fonte-texto: 'Work Sans', sans-serif;
+
+    --raio: 12px;
+    --sombra: 0 4px 14px rgba(31, 42, 36, 0.08);
+    --largura-max: 1100px;
+}
+
+/* ---------- 3. Reset básico ---------- */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* faz os links âncora (ex: #acessorios) rolarem suave */
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte-texto);
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--raio);
+    display: block;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-primaria-escura);
+    line-height: 1.25;
+}
+
+a {
+    color: var(--cor-primaria);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--cor-borda);
+    margin: 2rem 0;
+}
+
+/* ---------- 4. Cabeçalho (header) ---------- */
+header {
+    background: var(--cor-primaria);
+    color: #fff;
+    padding: 1.25rem 1.5rem;
+}
+
+header h1,
+header p,
+header img {
+    max-width: var(--largura-max);
+    margin: 0 auto;
+}
+
+header h1 {
+    color: #fff;
+    font-size: 1.9rem;
+    margin-top: 0.5rem;
+}
+
+header p {
+    color: #E3ECE7;
+    margin: 0.25rem auto;
+    font-size: 0.95rem;
+}
+
+header img {
+    width: 120px;
+}
+
+/* Nav principal (dentro do header) */
+header nav {
+    max-width: var(--largura-max);
+    margin: 1rem auto 0;
+}
+
+header nav h2 {
+    /* título "Menu de navegação" — mantido no HTML por acessibilidade,
+       escondido visualmente pois o <nav> já é auto-explicativo */
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+header nav a {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+header nav a:hover,
+header nav a:focus-visible {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* destaque do link da página atual — a classe "ativo" é
+   aplicada pelo script.js automaticamente */
+header nav a.ativo {
+    background: var(--cor-acento);
+    color: var(--cor-primaria-escura);
+    font-weight: 600;
+}
+
+/* Botão do menu mobile — escondido no desktop, o script.js
+   controla a exibição/estado */
+.nav-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    padding: 0.5rem 0.9rem;
+    font-family: var(--fonte-texto);
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+/* ---------- 5. Conteúdo principal (main) ---------- */
+main {
+    max-width: var(--largura-max);
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+main > h2:first-child {
+    font-size: 1.6rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+/* Navegação por categorias (produtos.html) */
+main nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 0;
+}
+
+main nav a {
+    text-decoration: none;
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+}
+
+main nav a:hover {
+    border-color: var(--cor-primaria);
+}
+
+/* ---------- 6. Cards de produtos/serviços (article) ---------- */
+section:has(article) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.25rem;
+    align-items: start;
+}
+
+/* título e parágrafo introdutórios da seção ocupam a linha toda */
+section:has(article) > h3,
+section:has(article) > p {
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+article {
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    padding: 1rem;
+    box-shadow: var(--sombra);
+}
+
+article h4 {
+    font-size: 1.05rem;
+    margin: 0.75rem 0 0.5rem;
+}
+
+article p {
+    margin: 0.35rem 0;
+    font-size: 0.95rem;
+    color: var(--cor-texto-suave);
+}
+
+article p strong {
+    color: var(--cor-texto);
+}
+
+/* ---------- 7. Tabelas ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--cor-superficie);
+    border-radius: var(--raio);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+}
+
+caption {
+    text-align: left;
+    font-weight: 600;
+    padding: 0.75rem;
+    color: var(--cor-primaria-escura);
+    background: var(--cor-fundo);
+}
+
+th, td {
+    text-align: left;
+    padding: 0.65rem 0.9rem;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+thead th {
+    background: var(--cor-primaria);
+    color: #fff;
+}
+
+tbody tr:hover {
+    background: var(--cor-fundo);
+}
+
+/* ---------- 8. Formulário (contato.html) ---------- */
+form {
+    background: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--sombra);
+    max-width: 560px;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+legend {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-primaria-escura);
+    padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0.75rem 0 0.3rem;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    font-family: var(--fonte-texto);
+    font-size: 0.95rem;
+    background: #fff;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: 2px solid var(--cor-acento);
+    outline-offset: 1px;
+    border-color: var(--cor-acento);
+}
+
+/* estado de erro simples — aplicado pelo script.js na validação */
+input.campo-invalido, textarea.campo-invalido {
+    border-color: #C0392B;
+    outline-color: #C0392B;
+}
+
+.mensagem-erro {
+    color: #C0392B;
+    font-size: 0.82rem;
+    margin-top: 0.25rem;
+}
+
+button, input[type="submit"] {
+    margin-top: 1.25rem;
+    background: var(--cor-acento);
+    color: var(--cor-primaria-escura);
+    border: none;
+    padding: 0.65rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+button:hover, input[type="submit"]:hover {
+    background: var(--cor-acento-escuro);
+    color: #fff;
+}
+
+/* mensagem de sucesso exibida via JS após envio */
+.form-sucesso {
+    display: none;
+    background: #E7F3EA;
+    border: 1px solid #BFE0C8;
+    color: #1F5A2E;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.form-sucesso.visivel {
+    display: block;
+}
+
+/* ---------- 9. Rodapé (footer) ---------- */
+footer {
+    background: var(--cor-primaria-escura);
+    color: #D9E4DF;
+    padding: 2rem 1.5rem 1.5rem;
+}
+
+footer > * {
+    max-width: var(--largura-max);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer h2, footer h3 {
+    color: #fff;
+}
+
+footer h2 {
+    font-size: 1.3rem;
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+}
+
+footer nav a {
+    color: #D9E4DF;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+footer nav a:hover {
+    color: var(--cor-acento);
+}
+
+footer address {
+    font-style: normal;
+    font-size: 0.9rem;
+    color: #C3D2CB;
+}
+
+footer small {
+    color: #9FB3A9;
+}
+
+/* ---------- 10. Botão "voltar ao topo" (criado via JS) ---------- */
+#btn-topo {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--cor-primaria);
+    color: #fff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#btn-topo.visivel {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#btn-topo:hover {
+    transform: translateY(-2px);
+}
+
+/* ---------- 11. Responsivo (mobile) ---------- */
+@media (max-width: 720px) {
+    .nav-toggle {
+        display: inline-block;
+    }
+
+    header nav ul {
+        display: none;
+        flex-direction: column;
+        margin-top: 0.75rem;
+    }
+
+    header nav ul.aberto {
+        display: flex;
+    }
+
+    header nav a {
+        text-align: center;
+    }
+
+    form {
+        max-width: 100%;
+    }
+}
